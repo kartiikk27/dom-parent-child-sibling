@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>DOM Manipulation Example</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 30px;
+      background-color: #f7faff;
+      max-width: 600px;
+      margin: auto;
+    }
+
+    h2 {
+      color: #1976d2;
+      text-align: center;
+    }
+
+    ul {
+      list-style-type: disc;
+      padding-left: 20px;
+      margin-top: 20px;
+    }
+
+    li {
+      margin: 10px 0;
+      padding: 10px;
+      border-radius: 6px;
+      background-color: #fff;
+      transition: background-color 0.3s;
+    }
+
+    .btn-group {
+      display: flex;
+      gap: 10px;
+      margin-top: 20px;
+      flex-wrap: wrap;
+    }
+
+    button {
+      padding: 10px 16px;
+      background-color: #1976d2;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+      flex: 1;
+    }
+
+    button:hover {
+      background-color: #0d47a1;
+    }
+
+    .highlight {
+      background-color: #ffeb3b !important;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>🧪 JavaScript DOM Manipulation</h2>
+
+  <ul id="myList">
+    <li>Item 1</li>
+    <li>Item 2</li>
+  </ul>
+
+  <div class="btn-group">
+    <button onclick="addItem()">➕ Add Item</button>
+    <button onclick="removeItem()">➖ Remove Last Item</button>
+    <button onclick="highlightItems()">✨ Highlight Items</button>
+    <button onclick="logDOM()">📋 Log DOM Info</button>
+  </div>
+
+  <script>
+    let itemCount = 2;
+
+    // Add a new item to the list
+    function addItem() {
+      itemCount++;
+      const ul = document.getElementById("myList");
+      const li = document.createElement("li");
+      li.textContent = "Item " + itemCount;
+      ul.appendChild(li);
+    }
+
+    // Remove the last item from the list
+    function removeItem() {
+      const ul = document.getElementById("myList");
+      if (ul.lastElementChild) {
+        ul.removeChild(ul.lastElementChild);
+        itemCount--;
+      }
+    }
+
+    // Highlight all items
+    function highlightItems() {
+      const items = document.querySelectorAll("#myList li");
+      items.forEach(item => {
+        item.classList.add("highlight");
+      });
+    }
+
+    // Log DOM navigation examples
+   function logDOM() {
+  const ul = document.getElementById("myList");
+  console.log("🔍 ul.parentNode:", ul.parentNode); // Should be <body>
+  console.log("🧒 ul.childNodes:", ul.childNodes); // May include text nodes
+  console.log("👉 ul.firstChild:", ul.firstChild); // Might be a text node
+  console.log("✅ ul.firstElementChild:", ul.firstElementChild); // The first <li>
+  console.log("➡️ ul.firstElementChild.nextElementSibling:", ul.firstElementChild.nextElementSibling); // The second <li>
+}
+
+  </script>
+
+</body>
+</html>
